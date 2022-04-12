@@ -1,0 +1,13 @@
+C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson3\Lesson-3-Homework\bin\Debug\netcoreapp3.1\Lesson-3-Homework.exe
+C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson3\Lesson-3-Homework\bin\Debug\netcoreapp3.1\Lesson-3-Homework.deps.json
+C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson3\Lesson-3-Homework\bin\Debug\netcoreapp3.1\Lesson-3-Homework.runtimeconfig.json
+C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson3\Lesson-3-Homework\bin\Debug\netcoreapp3.1\Lesson-3-Homework.runtimeconfig.dev.json
+C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson3\Lesson-3-Homework\bin\Debug\netcoreapp3.1\Lesson-3-Homework.dll
+C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson3\Lesson-3-Homework\bin\Debug\netcoreapp3.1\Lesson-3-Homework.pdb
+C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson3\Lesson-3-Homework\obj\Debug\netcoreapp3.1\Lesson-3-Homework.csprojAssemblyReference.cache
+C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson3\Lesson-3-Homework\obj\Debug\netcoreapp3.1\Lesson-3-Homework.AssemblyInfoInputs.cache
+C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson3\Lesson-3-Homework\obj\Debug\netcoreapp3.1\Lesson-3-Homework.AssemblyInfo.cs
+C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson3\Lesson-3-Homework\obj\Debug\netcoreapp3.1\Lesson-3-Homework.csproj.CoreCompileInputs.cache
+C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson3\Lesson-3-Homework\obj\Debug\netcoreapp3.1\Lesson-3-Homework.dll
+C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson3\Lesson-3-Homework\obj\Debug\netcoreapp3.1\Lesson-3-Homework.pdb
+C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson3\Lesson-3-Homework\obj\Debug\netcoreapp3.1\Lesson-3-Homework.genruntimeconfig.cache

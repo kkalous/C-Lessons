@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "lH5OPo/YUENnAPRkhO7iRo0JLbTWWiMFD1bVEdqGE8ig1UGUQanPhkaTDzwORg9qj7O5PuC4QUohfepYJ4zEOQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Kamila\\Desktop\\C# projects\\C-Lessons\\Lesson3\\Lesson-3-Homework\\Lesson-3-Homework.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Kamila\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.18\\microsoft.netcore.app.host.win-x64.3.1.18.nupkg.sha512"
+  ],
+  "logs": []
+}
