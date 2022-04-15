@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson-3-Homework", "Lesson-3-Homework.csproj", "{F4E0537D-366B-4239-AD7D-6F907809A758}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homework - Linq", "Homework - Linq.csproj", "{F4E0537D-366B-4239-AD7D-6F907809A758}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSVFileUpload", "..\CSVFileUpload\CSVFileUpload.csproj", "{178C3CA6-20C1-4AB3-94EE-F6279FF9889D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{F4E0537D-366B-4239-AD7D-6F907809A758}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4E0537D-366B-4239-AD7D-6F907809A758}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4E0537D-366B-4239-AD7D-6F907809A758}.Release|Any CPU.Build.0 = Release|Any CPU
+		{178C3CA6-20C1-4AB3-94EE-F6279FF9889D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{178C3CA6-20C1-4AB3-94EE-F6279FF9889D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{178C3CA6-20C1-4AB3-94EE-F6279FF9889D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{178C3CA6-20C1-4AB3-94EE-F6279FF9889D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

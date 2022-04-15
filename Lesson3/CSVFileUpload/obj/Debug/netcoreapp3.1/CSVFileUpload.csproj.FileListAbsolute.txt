@@ -1,0 +1,13 @@
+C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson3\CSVFileUpload\obj\Debug\netcoreapp3.1\CSVFileUpload.csprojAssemblyReference.cache
+C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson3\CSVFileUpload\obj\Debug\netcoreapp3.1\CSVFileUpload.AssemblyInfoInputs.cache
+C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson3\CSVFileUpload\obj\Debug\netcoreapp3.1\CSVFileUpload.AssemblyInfo.cs
+C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson3\CSVFileUpload\obj\Debug\netcoreapp3.1\CSVFileUpload.csproj.CoreCompileInputs.cache
+C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson3\CSVFileUpload\bin\Debug\netcoreapp3.1\CSVFileUpload.exe
+C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson3\CSVFileUpload\bin\Debug\netcoreapp3.1\CSVFileUpload.deps.json
+C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson3\CSVFileUpload\bin\Debug\netcoreapp3.1\CSVFileUpload.runtimeconfig.json
+C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson3\CSVFileUpload\bin\Debug\netcoreapp3.1\CSVFileUpload.runtimeconfig.dev.json
+C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson3\CSVFileUpload\bin\Debug\netcoreapp3.1\CSVFileUpload.dll
+C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson3\CSVFileUpload\bin\Debug\netcoreapp3.1\CSVFileUpload.pdb
+C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson3\CSVFileUpload\obj\Debug\netcoreapp3.1\CSVFileUpload.dll
+C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson3\CSVFileUpload\obj\Debug\netcoreapp3.1\CSVFileUpload.pdb
+C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson3\CSVFileUpload\obj\Debug\netcoreapp3.1\CSVFileUpload.genruntimeconfig.cache

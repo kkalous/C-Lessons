@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Kamila\\Desktop\\C# projects\\C-Lessons\\Lesson3\\Lesson-3-Homework\\Homework - Linq.csproj",
-      "projectName": "Homework - Linq",
-      "projectPath": "C:\\Users\\Kamila\\Desktop\\C# projects\\C-Lessons\\Lesson3\\Lesson-3-Homework\\Homework - Linq.csproj",
+      "projectUniqueName": "C:\\Users\\Kamila\\Desktop\\C# projects\\C-Lessons\\Lesson3\\CSVFileUpload\\CSVFileUpload.csproj",
+      "projectName": "CSVFileUpload",
+      "projectPath": "C:\\Users\\Kamila\\Desktop\\C# projects\\C-Lessons\\Lesson3\\CSVFileUpload\\CSVFileUpload.csproj",
       "packagesPath": "C:\\Users\\Kamila\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Kamila\\Desktop\\C# projects\\C-Lessons\\Lesson3\\Lesson-3-Homework\\obj\\",
+      "outputPath": "C:\\Users\\Kamila\\Desktop\\C# projects\\C-Lessons\\Lesson3\\CSVFileUpload\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Kamila\\AppData\\Roaming\\NuGet\\NuGet.Config",

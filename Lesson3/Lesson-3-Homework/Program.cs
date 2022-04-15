@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace Lesson_3_Homework
@@ -101,6 +102,8 @@ namespace Lesson_3_Homework
 
             var sum = purchases.Sum();
             Console.WriteLine($"{sum}");
+
+
         }
 
 
@@ -118,6 +121,11 @@ namespace Lesson_3_Homework
             public int Age { get; set; }
 
             //override ToString to return the person's FirstName LastName Age
+
+            public override string ToString()
+            {
+                return ($"{FirstName} {LastName}, {Age}");
+            }
 
         }
     }
