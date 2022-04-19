@@ -10,3 +10,17 @@ C:\Users\Kamila\Desktop\David C#\PhoneBook\PhoneBook\obj\Debug\netcoreapp3.1\Pho
 C:\Users\Kamila\Desktop\David C#\PhoneBook\PhoneBook\obj\Debug\netcoreapp3.1\PhoneBook.dll
 C:\Users\Kamila\Desktop\David C#\PhoneBook\PhoneBook\obj\Debug\netcoreapp3.1\PhoneBook.pdb
 C:\Users\Kamila\Desktop\David C#\PhoneBook\PhoneBook\obj\Debug\netcoreapp3.1\PhoneBook.genruntimeconfig.cache
+C:\C# Lessons\C-Lessons\Lesson2\PhoneBook\PhoneBook\bin\Debug\netcoreapp3.1\PhoneBook.exe
+C:\C# Lessons\C-Lessons\Lesson2\PhoneBook\PhoneBook\bin\Debug\netcoreapp3.1\PhoneBook.deps.json
+C:\C# Lessons\C-Lessons\Lesson2\PhoneBook\PhoneBook\bin\Debug\netcoreapp3.1\PhoneBook.runtimeconfig.json
+C:\C# Lessons\C-Lessons\Lesson2\PhoneBook\PhoneBook\bin\Debug\netcoreapp3.1\PhoneBook.runtimeconfig.dev.json
+C:\C# Lessons\C-Lessons\Lesson2\PhoneBook\PhoneBook\bin\Debug\netcoreapp3.1\PhoneBook.dll
+C:\C# Lessons\C-Lessons\Lesson2\PhoneBook\PhoneBook\bin\Debug\netcoreapp3.1\PhoneBook.pdb
+C:\C# Lessons\C-Lessons\Lesson2\PhoneBook\PhoneBook\obj\Debug\netcoreapp3.1\PhoneBook.csproj.AssemblyReference.cache
+C:\C# Lessons\C-Lessons\Lesson2\PhoneBook\PhoneBook\obj\Debug\netcoreapp3.1\PhoneBook.GeneratedMSBuildEditorConfig.editorconfig
+C:\C# Lessons\C-Lessons\Lesson2\PhoneBook\PhoneBook\obj\Debug\netcoreapp3.1\PhoneBook.AssemblyInfoInputs.cache
+C:\C# Lessons\C-Lessons\Lesson2\PhoneBook\PhoneBook\obj\Debug\netcoreapp3.1\PhoneBook.AssemblyInfo.cs
+C:\C# Lessons\C-Lessons\Lesson2\PhoneBook\PhoneBook\obj\Debug\netcoreapp3.1\PhoneBook.csproj.CoreCompileInputs.cache
+C:\C# Lessons\C-Lessons\Lesson2\PhoneBook\PhoneBook\obj\Debug\netcoreapp3.1\PhoneBook.dll
+C:\C# Lessons\C-Lessons\Lesson2\PhoneBook\PhoneBook\obj\Debug\netcoreapp3.1\PhoneBook.pdb
+C:\C# Lessons\C-Lessons\Lesson2\PhoneBook\PhoneBook\obj\Debug\netcoreapp3.1\PhoneBook.genruntimeconfig.cache
