@@ -11,25 +11,19 @@ namespace PhoneBook
         //Using dictionary
         public void AddContact(string name, long number)
         {
-            if (name.Length <= 5)
+            try
             {
-                try
+                if (CheckNumber(number))
                 {
-                    if (CheckNumber(number))
-                    {
-                        CheckIfExist(name, number);
-                        return;
-                    }
-                }
-
-                catch (Exception ex)
-                {
-                    Console.Write(ex);
-                    throw;
+                    CheckIfExist(name, number);
                 }
             }
-            Console.WriteLine($"Name {name} is too long. Change to only 5 charactes");
-            return;
+
+            catch (Exception ex)
+            {
+                Console.Write(ex);
+                throw;
+            }
         }       
 
 
