@@ -10,8 +10,8 @@ namespace PhoneBookTests
         public void SaveContact()
         {
             PhoneBookService phoneBook = new PhoneBookService();
-            phoneBook.AddContact("David", 07900001234);
-            phoneBook.contactsList.TryGetValue("David", out long value);
+            phoneBook.AddContact("David", "07900001234");
+            phoneBook.contactsList.TryGetValue("David", out string value);
             Assert.AreEqual(07900001234, value);
         }
 
@@ -19,7 +19,7 @@ namespace PhoneBookTests
         public void FindContact()
         {
             PhoneBookService phoneBook = new PhoneBookService();
-            phoneBook.AddContact("David", 07900001234);
+            phoneBook.AddContact("David", "07900001234");
             var result = phoneBook.FindContact("David");            
             Assert.AreEqual(07900001234, result);
         }
@@ -28,7 +28,7 @@ namespace PhoneBookTests
         public void DeleteContact()
         {
             PhoneBookService phoneBook = new PhoneBookService();
-            phoneBook.AddContact("David", 07905555555);
+            phoneBook.AddContact("David", "07905555555");
             var result = phoneBook.DeleteContact("David");
             Assert.AreEqual(07905555555, result);
         }
@@ -37,9 +37,9 @@ namespace PhoneBookTests
         public void DeleteNumber()
         {
             PhoneBookService phoneBook = new PhoneBookService();
-            phoneBook.AddContact("David", 07905555555);
-            phoneBook.DeleteNumber(07905555555);
-            phoneBook.contactsList.TryGetValue("David", out long value);
+            phoneBook.AddContact("David", "07905555555");
+            phoneBook.DeleteNumber("07905555555");
+            phoneBook.contactsList.TryGetValue("David", out string value);
             Assert.AreEqual(0, value);
         }
 
@@ -48,7 +48,7 @@ namespace PhoneBookTests
         {
             PhoneBookService phoneBook = new PhoneBookService();
             //phoneBook.AddContact("David", 07900001234);
-            var result = phoneBook.UpdateNumber("David", 07911001234);
+            var result = phoneBook.UpdateNumber("David", "07911001234");
             Assert.AreEqual(07911001234, result);
         }
 

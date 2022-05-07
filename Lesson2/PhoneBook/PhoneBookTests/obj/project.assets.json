@@ -2089,11 +2089,12 @@
       ]
     },
     "System.Collections.Specialized/4.3.0": {
-      "sha512": "NoPBj0ykejqAWW4p4gGtrrL+3c84ZLSvGnHgq422ew1Rj4WKj1FA8/BCybqC111EtgcqUl6ZJNFYYS22HLgbjA==",
+      "sha512": "Epx8PoVZR0iuOnJJDzp7pWvdfMMOAvpUo95pC4ScH2mJuXkKA2Y4aR3cG9qt2klHgSons1WFh4kcGW7cSXvrxg==",
       "type": "package",
       "path": "system.collections.specialized/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -4638,48 +4639,34 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\kkalousova\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Kamila\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\C# Lessons\\C-Lessons\\Lesson2\\PhoneBook\\PhoneBookTests\\PhoneBookTests.csproj",
+      "projectUniqueName": "C:\\Users\\Kamila\\Desktop\\C# projects\\C-Lessons\\Lesson2\\PhoneBook\\PhoneBookTests\\PhoneBookTests.csproj",
       "projectName": "PhoneBookTests",
-      "projectPath": "C:\\C# Lessons\\C-Lessons\\Lesson2\\PhoneBook\\PhoneBookTests\\PhoneBookTests.csproj",
-      "packagesPath": "C:\\Users\\kkalousova\\.nuget\\packages\\",
-      "outputPath": "C:\\C# Lessons\\C-Lessons\\Lesson2\\PhoneBook\\PhoneBookTests\\obj\\",
+      "projectPath": "C:\\Users\\Kamila\\Desktop\\C# projects\\C-Lessons\\Lesson2\\PhoneBook\\PhoneBookTests\\PhoneBookTests.csproj",
+      "packagesPath": "C:\\Users\\Kamila\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Kamila\\Desktop\\C# projects\\C-Lessons\\Lesson2\\PhoneBook\\PhoneBookTests\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\kkalousova\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.1.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Kamila\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\DevExpress 19.1\\Components\\System\\Components\\Packages": {},
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\git\\360-manager\\src\\api\\Nav360.SharedModels.ManagerModels\\bin\\Debug": {},
-        "C:\\git\\360-product-v2\\Nav360.SharedModels.ProductModels\\bin\\Debug": {},
-        "C:\\git\\RiskApi\\Nav360.SharedModels.RiskModels\\bin\\Debug": {},
-        "C:\\git\\reporting-api\\Nav360.SharedModels.ReportingModels\\bin\\Debug": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://pkgs.dev.azure.com/ETGBSG/ETGBSG/_packaging/BSG/nuget/v2": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\C# Lessons\\C-Lessons\\Lesson2\\PhoneBook\\PhoneBook\\PhoneBook.csproj": {
-              "projectPath": "C:\\C# Lessons\\C-Lessons\\Lesson2\\PhoneBook\\PhoneBook\\PhoneBook.csproj"
+            "C:\\Users\\Kamila\\Desktop\\C# projects\\C-Lessons\\Lesson2\\PhoneBook\\PhoneBook\\PhoneBook.csproj": {
+              "projectPath": "C:\\Users\\Kamila\\Desktop\\C# projects\\C-Lessons\\Lesson2\\PhoneBook\\PhoneBook\\PhoneBook.csproj"
             }
           }
         }
@@ -4722,7 +4709,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.303\\RuntimeIdentifierGraph.json"
       }
     }
   }

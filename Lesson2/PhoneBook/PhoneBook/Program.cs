@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace PhoneBook
 {
@@ -18,99 +19,87 @@ namespace PhoneBook
                                 "If you want to delete contact write D\n" +
                                 "If you want to delete number write DN\n" +
                                 "Wrtie E to exit PhoneBook");
-            var menuOption = Console.ReadLine().ToString();
-            if (menuOption == "S" || menuOption == "s")
-            {
-                Console.WriteLine("Insert contact name: ");
-                var name = Console.ReadLine();
-                phoneBook.FindContact(name);
+            var menuOption = Console.ReadLine();
+            //var result = menuOption.Equals("e", StringComparison.InvariantCultureIgnoreCase);
+            //var results = "e".Equals(menuOption, StringComparison.InvariantCultureIgnoreCase);
+            while (menuOption != "E" && menuOption != "e")
+            {                
+                if (menuOption == "S" || menuOption == "s")
+                {
+                    Console.WriteLine("Insert contact name: ");
+                    var name = Console.ReadLine();
+                    var result = phoneBook.FindContact(name);
 
-                Console.WriteLine("What else?\n");
-                menuOption = Console.ReadLine().ToString();
-            }
-            else if (menuOption == "A" || menuOption == "a")
-            {
-                Console.WriteLine("Insert number: ");
-                var number = Console.ReadLine();
-                var numberLong = Convert.ToInt32(number);
+                    if (result == null)
+                    {
+                        Console.WriteLine($"No number saved for Contact: {name}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Number saved under Contact {name} is {result}");
+                    }
 
-                Console.WriteLine("Insert name: ");
-                var name = Console.ReadLine();
+                    Console.WriteLine("What else?\n");
+                    menuOption = Console.ReadLine().ToString();
+                }
+                else if (menuOption == "A" || menuOption == "a")
+                {
+                    Console.WriteLine("Insert number: ");
+                    var number = Console.ReadLine();
 
-                phoneBook.AddContact(name, numberLong);
+                    Console.WriteLine("Insert name: ");
+                    var name = Console.ReadLine();
 
-                Console.WriteLine("What else?\n");
-                menuOption = Console.ReadLine().ToString();
+                    phoneBook.AddContact(name, number);
 
-            }
-            else if (menuOption == "U" || menuOption == "u")
-            {
-                Console.WriteLine("Insert the contact name you want to update number for: ");
-                var name = Console.ReadLine();
+                    Console.WriteLine("What else?\n");
+                    menuOption = Console.ReadLine().ToString();
 
-                Console.WriteLine("Insert new number: ");
-                var number = Console.ReadLine();
-                var numberLong = Convert.ToInt32(number);
+                }
+                else if (menuOption == "U" || menuOption == "u")
+                {
+                    Console.WriteLine("Insert the contact name you want to update number for: ");
+                    var name = Console.ReadLine();
 
-                phoneBook.UpdateNumber(name, numberLong);
+                    Console.WriteLine("Insert new number: ");
+                    var number = Console.ReadLine();
 
-                Console.WriteLine("What else?\n");
-                menuOption = Console.ReadLine().ToString();
-            }
-            else if (menuOption == "D" || menuOption == "d")
-            {
-                Console.WriteLine("Insert the contact name you want to delete: ");
-                var name = Console.ReadLine();
-                phoneBook.DeleteContact(name);
+                    var newNumber = phoneBook.UpdateNumber(name, number);
+                    Console.WriteLine($"Contact: {name} Number: {newNumber} saved");
 
-                Console.WriteLine("What else?\n");
-                menuOption = Console.ReadLine().ToString();
+                    Console.WriteLine("What else?\n");
+                    menuOption = Console.ReadLine().ToString();
+                }
+                else if (menuOption == "D" || menuOption == "d")
+                {
+                    Console.WriteLine("Insert the contact name you want to delete: ");
+                    var name = Console.ReadLine();
+                    var deletedNumber = phoneBook.DeleteContact(name);
 
-            }
-            else if (menuOption == "DN" || menuOption == "dn")
-            {
-                Console.WriteLine("Insert number you want to delete: ");
-                var number = Console.ReadLine();
-                var numberLong = Convert.ToInt32(number);
-                phoneBook.DeleteNumber(numberLong);
+                    if (deletedNumber != null) Console.WriteLine($"Contact with name: {name} and number:{deletedNumber} deleted");
+                    else Console.WriteLine("Contact doesn't exist");
 
-                Console.WriteLine("What else?\n");
-                menuOption = Console.ReadLine().ToString();
-            }
-            else if (menuOption == "E" || menuOption == "e")
-            {
-                Console.WriteLine("Bye");
-            }
-            else
-            {
-                Console.WriteLine("I don't recognize this command. Please try it again!");
-                menuOption = Console.ReadLine().ToString();
-            }
+                    Console.WriteLine("What else?\n");
+                    menuOption = Console.ReadLine().ToString();
+
+                }
+                else if (menuOption == "DN" || menuOption == "dn")
+                {
+                    Console.WriteLine("Insert number you want to delete: ");
+                    var number = Console.ReadLine();
+                    phoneBook.DeleteNumber(number);
+
+                    Console.WriteLine("What else?\n");
+                    menuOption = Console.ReadLine().ToString();
+                }
+                else
+                {
+                    Console.WriteLine("I don't recognize this command. Please try it again!");
+                    menuOption = Console.ReadLine().ToString();
+                }               
+
+            }           
             
-        }
-    }
-
-    class MyGenericClass<T1, TField>
-    {
-        private readonly T1 _variable;
-        public MyGenericClass(T1 variable)
-        {
-            _variable = variable;
-        }
-
-        public TField Field { get; set; }
-    }
-
-    class MyGenericMethods
-    {
-        private string ToString<T>(T it)
-        {
-            return it.ToString();
-        }
-
-        public static T SafeGetAt<T>(List<T> list, int index)
-        {
-            return index < list.Count ? list[index] : default(T);
         }
     }
 }

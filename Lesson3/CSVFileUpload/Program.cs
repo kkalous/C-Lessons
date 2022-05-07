@@ -10,32 +10,43 @@ namespace CSVFileUpload
         static void Main(string[] args)
         {
             Console.WriteLine("\n");
-            //var strategyPln = new StrategyPnl();
+
             var lines = File.ReadAllLines("C:\\Users\\Kamila\\Desktop\\C# projects\\CSharpJames\\Gsa\\pnl.csv");
-            //.Split(",");
 
-            List<string[]> data = new List<string[]>();
+            var header = lines[0].Split(",").Skip(1).ToArray();
+            var data = lines.Skip(1);
 
-            foreach (var line in lines)
+            var dictionary = new Dictionary<string, List<Pnl>>();
+
+            foreach (var strategy in header)
+            {
+                dictionary.Add(strategy, new List<Pnl>());
+            }
+
+            foreach (var line in data)
+            {
+                var cell = line.Split(",");
+                var date = Convert.ToDateTime(cell[0]);
+                for (int i = 1; i < cell.Length; i++)
+                {
+                    var pnl = new Pnl()
+                    {
+                        Amount = Convert.ToDecimal(cell[i]),
+                        Date = date
+                    };
+
+                    var strategy = header[i - 1];
+                    dictionary[strategy].Add(pnl);
+                }
+            }
+
+            //List<string[]> data = new List<string[]>();
+
+            /*foreach (var line in lines)
             {
                 var vals = line.Split(",");
                 data.Add(vals);
             }
-
-            //List<string> strategyNames = new List<string>();
-
-            //for (int i = 1; i < 16; i++ )
-            //{
-            //    var strategyName = data.First()[i];
-            //    strategyNames.Add(strategyName);
-            //}
-
-        /*    List<DateTime> dates = new List<DateTime>();
-            for (int i = 1; i < lines.Length; i++)
-            {
-                var date = DateTime.Parse(data[i].First());
-                dates.Add(date);
-            }*/
 
             List<StrategyPnl> strategyPnl = new List<StrategyPnl>();
             for (int i = 1; i < 16; i++)
@@ -61,11 +72,12 @@ namespace CSVFileUpload
                 }
             }            
        
+        }*/
+
+
         }
-
-
     }
-    
+
 
     public class StrategyPnl
     {

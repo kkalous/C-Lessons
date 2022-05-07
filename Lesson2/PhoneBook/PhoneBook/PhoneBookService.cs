@@ -1,22 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace PhoneBook
 {
     public class PhoneBookService
     {
-        public IDictionary<string, long> contactsList = new Dictionary<string, long>();
-        
-        //Using dictionary
-        public void AddContact(string name, long number)
+        public IDictionary<string, string> contactsList = new Dictionary<string, string>();
+
+        public string path = "C:\\Users\\Kamila\\Desktop\\C# projects\\C-Lessons\\Lesson2\\PhoneBook\\PhoneBook\\PhoneBookList.txt";
+
+        public void AddContact(string name, string number)
         {
             try
             {
                 if (CheckNumber(number))
                 {
-                    CheckIfExist(name, number);
+                    if (!Exists(name, number))
+                    {
+                        WriteContact(name, number);
+                        PopulateContactList(true);
+                    }
+
                 }
+
             }
 
             catch (Exception ex)
@@ -24,64 +33,78 @@ namespace PhoneBook
                 Console.Write(ex);
                 throw;
             }
-        }       
 
-
-        //using array
-        public int[] numbers;
-        public string[] names;
-
-        public long? FindContact(string name)
-        {
-           contactsList.TryGetValue(name, out long value);
-           long? result = null;
-           result = value;
-           if (result == null) Console.WriteLine($"No number saved for Contact: {name}");
-            return result;        
         }
 
-        public long? DeleteContact(string name)
+        public string FindContact(string name)
         {
-            var successful = contactsList.TryGetValue(name, out long value); ;
-            if (successful == true)
+            PopulateContactList();
+            if (contactsList.ContainsKey(name))
             {
-                contactsList.Remove(name);
-                Console.WriteLine($"Contact with name: {name} and number:{value} deleted");
+                contactsList.TryGetValue(name, out string value);
                 return value;
-
             }
             else
             {
-                Console.WriteLine("Contact doesn't exist");
                 return null;
             }
         }
 
-        public void DeleteNumber(long number)
+        public string DeleteContact(string name)
         {
-            foreach(var item in contactsList)
+            PopulateContactList();
+            var successful = contactsList.TryGetValue(name, out string value);
+
+            if (successful == true)
+            {
+                contactsList.Remove(name);
+
+                File.Delete(path);
+                File.AppendAllLines(path, contactsList.Select(x => $"{x.Key},{x.Value}"));
+
+                return value;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public void DeleteNumber(string number)
+        {
+
+            PopulateContactList();
+            foreach (var item in contactsList)
             {
                 if (item.Value == number)
                 {
                     contactsList.Remove(item.Key);
-                    return;
-                }
-                else
-                {
-                    Console.WriteLine("This number is not save");
+
+                    File.Delete(path);
+                    File.AppendAllLines(path, contactsList.Select(x => $"{x.Key},{x.Value}"));
+
                     return;
                 }
             }
+
+            Console.WriteLine("Number is not saved");
         }
 
-        public long UpdateNumber(string name, long newNumber)
+
+        public string UpdateNumber(string name, string newNumber)
         {
-            var success = contactsList.TryGetValue(name, out long value);
-            if(success == true)
+            PopulateContactList();
+            var success = contactsList.TryGetValue(name, out string value);
+
+            if (success == true)
             {
                 if (value == newNumber) Console.WriteLine("New number is the same as saved number");
+
                 contactsList[name] = newNumber;
-                Console.WriteLine($"Contact: {name} Number: {newNumber} saved - Old number: {value}");
+
+                File.Delete(path);
+                File.AppendAllLines(path, contactsList.Select(x => $"{x.Key},{x.Value}"));
+
                 return value;
             }
 
@@ -91,26 +114,27 @@ namespace PhoneBook
             return newNumber;
         }
 
-        private bool CheckIfExist(string name, long number)
+        private bool Exists(string name, string number)
         {
+            PopulateContactList();
             if (contactsList.ContainsKey(name))
             {
-                contactsList.TryGetValue(name, out long value);
+                contactsList.TryGetValue(name, out string value);
                 Console.WriteLine($"Contact with this name already exists! It's saved with number {value}");
-                return false;
-            }
-
-            else
-            {
-                contactsList.Add(name, number);
-                Console.WriteLine($"Contact saved under name {name} with number {number}");
                 return true;
             }
+            return false;
+
         }
 
-        private bool CheckNumber(long number)
+        private void WriteContact(string name, string number)
         {
-            if (number.ToString().Length == 10)
+            File.AppendAllText(path, $"{name},{number}" + Environment.NewLine);
+            Console.WriteLine($"Contact saved under name {name} with number {number}");
+        }
+        private bool CheckNumber(string number)
+        {
+            if (number.Length == 11)
             {
                 Console.WriteLine("Number OK");
                 return true;
@@ -122,5 +146,70 @@ namespace PhoneBook
             }
         }
 
+        private IDictionary<string, string> PopulateContactList(bool forceReload = false)
+        {
+            if (contactsList.Count == 0 || forceReload)
+            {
+                contactsList = new Dictionary<string, string>();
+
+                var allContacts = File.ReadAllLines(path).ToList();
+
+                if (allContacts.Count > 0)
+                {
+                    foreach (var contact in allContacts)
+                    {
+                        var split = contact.Split(",");
+                        contactsList.Add(split[0], split[1]);
+                    }
+                }
+            }
+
+            return contactsList;
+
+        }
+        //private void UpdatePhoneBook(string name, string number)
+        //{
+        //    var allContacts = File.ReadAllLines(path).ToList();
+
+        //    if (allContacts.Count > 0)
+        //    {
+        //        var i = 0;
+        //        foreach (var contact in allContacts)
+        //        {
+        //            var split = contact.Split(",");
+
+        //            if (name != null && split[0] == name && number == null)
+        //            {
+        //                File.Delete(path);
+
+        //                allContacts.RemoveAt(i);
+        //                File.AppendAllLines(path, allContacts);
+        //                return;
+        //            }
+
+        //            else if(number != null && split[1] == number)
+        //            {
+        //                File.Delete(path);
+
+        //                allContacts.RemoveAt(i);
+        //                File.AppendAllLines(path, allContacts);
+        //                return;
+        //            }
+
+        //            else if(number != null && name != null && split[0] == name)
+        //            {
+        //                File.Delete(path);
+
+        //                allContacts.RemoveAt(i);
+        //                allContacts.Add($"{name},{number}");
+        //                File.AppendAllLines(path, allContacts);
+        //                return;
+        //            }
+
+        //            i++;                   
+
+        //        }
+        //    }            
+        //}
     }
 }
