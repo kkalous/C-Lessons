@@ -6,11 +6,11 @@ namespace PhoneBook
 {
 
     class Program
-    {        
-
+    {
         static void Main(string[] args)
         {
-            PhoneBookService phoneBook = new PhoneBookService();
+            PhoneBookService phoneBook = new PhoneBookService(new PhoneBookStore());
+
 
             Console.WriteLine("Hi! Welcome to PhoneBook!\n");
             Console.WriteLine("If you want to search for a contact write S\n" +
@@ -20,8 +20,6 @@ namespace PhoneBook
                                 "If you want to delete number write DN\n" +
                                 "Wrtie E to exit PhoneBook");
             var menuOption = Console.ReadLine();
-            //var result = menuOption.Equals("e", StringComparison.InvariantCultureIgnoreCase);
-            //var results = "e".Equals(menuOption, StringComparison.InvariantCultureIgnoreCase);
             while (menuOption != "E" && menuOption != "e")
             {                
                 if (menuOption == "S" || menuOption == "s")
@@ -50,8 +48,16 @@ namespace PhoneBook
                     Console.WriteLine("Insert name: ");
                     var name = Console.ReadLine();
 
-                    phoneBook.AddContact(name, number);
+                    var isContactSaved = phoneBook.AddContact(name, number);
 
+                    if (!isContactSaved)
+                    {
+                        Console.WriteLine($"Can't save {number}.Check if your number is in the UK mobile phone number format '07911123456'");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Contact saved!");
+                    }
                     Console.WriteLine("What else?\n");
                     menuOption = Console.ReadLine().ToString();
 
@@ -62,10 +68,20 @@ namespace PhoneBook
                     var name = Console.ReadLine();
 
                     Console.WriteLine("Insert new number: ");
-                    var number = Console.ReadLine();
+                    var newNumber = Console.ReadLine();
 
-                    var newNumber = phoneBook.UpdateNumber(name, number);
-                    Console.WriteLine($"Contact: {name} Number: {newNumber} saved");
+                    var number = phoneBook.UpdateNumber(name, newNumber);
+                    if (number == null)
+                    {
+                       Console.WriteLine($"Contact: {name} doesn't exist. ");
+                       Console.WriteLine($"New Contact saved! Name: {name} Number: {newNumber}");
+
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Contact: {name} - Old number: {number} deleted - Updated Number: {newNumber} saved");
+                    }
+                   
 
                     Console.WriteLine("What else?\n");
                     menuOption = Console.ReadLine().ToString();

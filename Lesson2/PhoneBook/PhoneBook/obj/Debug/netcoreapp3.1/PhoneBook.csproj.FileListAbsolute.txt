@@ -30,10 +30,10 @@ C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson2\PhoneBook\PhoneBook\bin\De
 C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson2\PhoneBook\PhoneBook\bin\Debug\netcoreapp3.1\PhoneBook.runtimeconfig.dev.json
 C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson2\PhoneBook\PhoneBook\bin\Debug\netcoreapp3.1\PhoneBook.dll
 C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson2\PhoneBook\PhoneBook\bin\Debug\netcoreapp3.1\PhoneBook.pdb
-C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson2\PhoneBook\PhoneBook\obj\Debug\netcoreapp3.1\PhoneBook.csprojAssemblyReference.cache
 C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson2\PhoneBook\PhoneBook\obj\Debug\netcoreapp3.1\PhoneBook.AssemblyInfoInputs.cache
 C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson2\PhoneBook\PhoneBook\obj\Debug\netcoreapp3.1\PhoneBook.AssemblyInfo.cs
 C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson2\PhoneBook\PhoneBook\obj\Debug\netcoreapp3.1\PhoneBook.csproj.CoreCompileInputs.cache
 C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson2\PhoneBook\PhoneBook\obj\Debug\netcoreapp3.1\PhoneBook.dll
 C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson2\PhoneBook\PhoneBook\obj\Debug\netcoreapp3.1\PhoneBook.pdb
 C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson2\PhoneBook\PhoneBook\obj\Debug\netcoreapp3.1\PhoneBook.genruntimeconfig.cache
+C:\Users\Kamila\Desktop\C# projects\C-Lessons\Lesson2\PhoneBook\PhoneBook\obj\Debug\netcoreapp3.1\PhoneBook.csprojAssemblyReference.cache
