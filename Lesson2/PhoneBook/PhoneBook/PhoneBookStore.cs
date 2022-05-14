@@ -13,24 +13,6 @@ namespace PhoneBook
         void WriteContact(string name, string number);
     }
 
-    public class DbVersion : IPhoneBookStore
-    {
-        public Dictionary<string, string> GetContactList()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SaveAll(Dictionary<string, string> contactsList)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void WriteContact(string name, string number)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
     public class PhoneBookStore : IPhoneBookStore
     {
         private string path = "C:\\Users\\Kamila\\Desktop\\C# projects\\C-Lessons\\Lesson2\\PhoneBook\\PhoneBook\\PhoneBookList.txt";

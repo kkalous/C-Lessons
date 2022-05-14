@@ -10,7 +10,6 @@ namespace PhoneBook
         private readonly IPhoneBookStore _store;
         public Dictionary<string, string> _contactsList = new Dictionary<string, string>();
 
-
         public PhoneBookService(IPhoneBookStore store)
         {
             _store = store;
