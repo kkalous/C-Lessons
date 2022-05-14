@@ -4,6 +4,7 @@ using System.Text;
 
 namespace PhoneBook
 {
+
     public class PhoneBookService
     {
         private readonly IPhoneBookStore _store;
@@ -24,6 +25,7 @@ namespace PhoneBook
                 _store.WriteContact(name, number);
                 return true;
             }
+
             return false;
         }
 
@@ -66,7 +68,7 @@ namespace PhoneBook
         {
             var success = _contactsList.TryGetValue(name, out string value);
 
-            if (success == true)
+            if (success)
             {
                 _contactsList[name] = newNumber;
                 _store.SaveAll(_contactsList);
