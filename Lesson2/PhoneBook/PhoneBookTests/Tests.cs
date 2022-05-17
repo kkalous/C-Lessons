@@ -1,27 +1,50 @@
+using System.Collections.Generic;
+using Moq;
 using NUnit.Framework;
 using PhoneBook;
 
 namespace PhoneBookTests
-{   
+{
+
+    // Kamilas sins
+    // 1. Your unit tests should have no negative side effects: e.g. writing to a file/db: Integration
+    // 2. Testing not focused on the class under test
+    // 3. Tests that depend on other tests
     class Tests
     {
-        private readonly PhoneBookService _phoneBook;
-        public Tests()
+        private PhoneBookService _phoneBook;
+
+        [SetUp]
+        public void Setup()
         {
-            _phoneBook = new PhoneBookService(new PhoneBookStore());
+            var fakeStore = new Mock<IPhoneBookStore>();
+            fakeStore.Setup(x => x.GetContactList()).Returns(new Dictionary<string, string>());
+            _phoneBook = new PhoneBookService(fakeStore.Object);
         }
 
         [Test]
         public void DeleteContactSuccess()
         {
+            // Triple A
+            // Arrange (setup)
+            _phoneBook.AddContact("Kamila", "07900001234");
+
+            // Act
             var deletedNumber = _phoneBook.DeleteContact("Kamila");
+
+            // Assert (Test)
             Assert.AreEqual("07900001234", deletedNumber); // Contact deleted - returns deleted number 
         }
 
         [Test]
         public void DeleteContactFail()
         {
-            var deletedNumber = _phoneBook.DeleteContact("Kamila");
+            // Setup
+
+            // Act
+            var deletedNumber =   _phoneBook.DeleteContact("Kamila");
+
+            // Test phase
             Assert.AreEqual(null, deletedNumber); //Contact doesn't exist - nothing was deleted - returns null
         }
 
@@ -37,7 +60,11 @@ namespace PhoneBookTests
         [Test]
         public void AddContactAlreadyExists()
         {
-            var contactAdded = _phoneBook.AddContact("Kamila", "07900001234");
+            var fakeStore = new Mock<IPhoneBookStore>();
+            fakeStore.Setup(x => x.GetContactList()).Returns(new Dictionary<string, string>() {{ "Kamila", "07900000000" } });
+            var contactPhonebook = new PhoneBookService(fakeStore.Object);
+
+            var contactAdded = contactPhonebook.AddContact("Kamila", "07900001234");
             Assert.AreEqual(contactAdded, false); //Can't add a contact because contact with this name is already saved
         }
 
