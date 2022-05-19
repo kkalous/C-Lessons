@@ -78,6 +78,7 @@ namespace PhoneBookTests
         [Test]
         public void SearchContactSuccess()
         {
+            _phoneBook.AddContact("Kamila", "07900001234");
             _phoneBook._contactsList.TryGetValue("Kamila", out string value);
             Assert.AreEqual("07900001234", value); // Contact exists - returns saved number
         }
@@ -102,8 +103,9 @@ namespace PhoneBookTests
         [Test]
         public void UpdateContactSuccess()
         {
-            var result = _phoneBook.UpdateNumber("Kamila", "07911001234"); //Contact updated - Returns old number
-            Assert.AreEqual("07900001234", result);
+            _phoneBook.AddContact("Kamila", "07911111234");
+            var result = _phoneBook.UpdateNumber("Kamila", "07911111234"); //Contact updated - Returns old number
+            Assert.AreEqual("07911111234", result);
         }
 
         [Test]

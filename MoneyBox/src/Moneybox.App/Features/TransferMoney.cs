@@ -6,15 +6,15 @@ namespace Moneybox.App.Features
 {
     public class TransferMoney
     {
-        private IAccountRepository accountRepository;
-        private INotificationService notificationService;
+        private readonly IAccountRepository accountRepository;
+        private readonly INotificationService notificationService;
 
         public TransferMoney(IAccountRepository accountRepository, INotificationService notificationService)
         {
             this.accountRepository = accountRepository;
             this.notificationService = notificationService;
         }
-
+        
         public void Execute(Guid fromAccountId, Guid toAccountId, decimal amount)
         {
             var from = this.accountRepository.GetAccountById(fromAccountId);
@@ -42,11 +42,11 @@ namespace Moneybox.App.Features
                 this.notificationService.NotifyApproachingPayInLimit(to.User.Email);
             }
 
-            from.Balance = from.Balance - amount;
-            from.Withdrawn = from.Withdrawn - amount;
+            from.Balance -= amount;
+            from.Withdrawn -= amount;
 
-            to.Balance = to.Balance + amount;
-            to.PaidIn = to.PaidIn + amount;
+            to.Balance += amount;
+            to.PaidIn += amount;
 
             this.accountRepository.Update(from);
             this.accountRepository.Update(to);
