@@ -20,7 +20,7 @@ namespace MoneyBoxTest
             var _withdrawMoney = new WithdrawMoney(fakeAccountRepository.Object, fakeNotificationService.Object);            
 
             var ex = Assert.Throws<InvalidOperationException>(() => _withdrawMoney.Execute(Guid.Parse("3F2504E0-4F89-11D3-9A0C-0305E82C3301"), 123m));
-            Assert.That(ex.Message, Is.EqualTo("You don't have enough money in your bankaccount!"));
+            Assert.That(ex.Message, Is.EqualTo("Insufficient funds to withdraw money"));
         }
 
         [Test]
