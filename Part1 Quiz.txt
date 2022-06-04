@@ -1,0 +1,90 @@
+Part 1 - Quiz. Can't use internet for these questions. Or visual studio
+1. What is SOLID. List all 5
+--S-Single Responsibility - not more than one reason for class to change
+--O-Open closed - Open for extensions but closed for modification
+--L-Liskov substitution - extension of open close principle ... making sure extended classes doesn't change base classes behavior
+--I-Interfaces - more small ones rather than one big one
+--D- dependency inversion
+
+2. What is the difference between struct and class
+
+3. List Data structures in c# e.g. List, ... 
+--List, Array, Dictionary, 
+
+4. What is sealed, abstract and virtual keywords 
+
+5. What are the different access modifiers in c# (e.g. private). And what do they do
+--Private - can be accesed only inside a class
+--Public - can be accesed inside as well as ousie a class
+--Protected - acesible inside the class and in other classes that derive from this class
+
+6. What is the difference between "const", "static" and "static readonly" keywords
+--Const - it's value is constant, we have to assing some value to it
+--static readonly - the value can be changed but only in constructor
+--static - 
+
+7. Write a line of code that throws an exception
+--int.Parse("asdf"); //We would have to use int.TryParse("asdf") to not get exception
+
+8. When should you use stringbuilder 
+
+9. What is the CLR - Common Language Runtime
+
+10. Why are strings immutable
+
+11. What is diff between GetType(), is and typeof()
+
+12. How is a dictionary implemented
+--it's using a hash table and hash function, this function create hascode that is saved in array
+
+13. What is the Equals/hashcode contract. Aka why are the equals() and hashcode() important on every class and important in dictionary.
+
+14. What happens when there is a collision in a dictionary
+
+15. What is a constructor. Write code for an example
+Constructor is a method that gets called as first when class is called 
+
+ public class Example
+    {
+
+        public Example()
+        {
+		//Code that will get called first
+        }
+
+16. What is the difference between method overloading and overriding. Give an example of each 
+--Overriding is when we have a base class with method and class derived from it with same method ... these two methods will override eachother
+--Overloading is when we have methods with same names, but different variables
+
+17. What is the main entry point of a c# application 
+--The first method that is called after running c# app is Main method in Program.cs
+
+18. What is TDD? Explain the 3 steps in it. 
+--using/writing unit tests while coding
+--AAA - Arrange, get ready + act, run the code + assert, check your result
+
+19. Explain difference between ref and out keywords in C#
+
+20. What is the output for executing the following code?
+public class TestClass
+{
+    private string a = "Unchanged";
+    
+    private void TestMethod(string b)
+    {
+        var newString = "Changed in TestMethod";
+        b = newString;
+        Console.WriteLine(b);
+    }
+    
+    public void RunTest()
+    {
+        TestMethod(a);
+        Console.WriteLine(a);
+    }
+}
+var test = new TestClass();
+test.RunTest();
+
+--There will be "Changed in TestMethod" written twice in Console
+

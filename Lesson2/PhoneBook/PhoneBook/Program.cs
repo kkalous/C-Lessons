@@ -8,7 +8,7 @@ namespace PhoneBook
     class Program
     {
         static void Main(string[] args)
-        {
+        {  
             PhoneBookService phoneBook = new PhoneBookService(new PhoneBookStore());
 
 
