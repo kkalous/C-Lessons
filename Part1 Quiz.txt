@@ -7,16 +7,22 @@ Part 1 - Quiz. Can't use internet for these questions. Or visual studio
 --D- dependency inversion
 
 2. What is the difference between struct and class
+//Struct - For data, can't be null 
+//Class - can have methods as well and can be null
 
 3. List Data structures in c# e.g. List, ... 
 --List, Array, Dictionary, 
 
 4. What is sealed, abstract and virtual keywords 
+Sealed - can't be inherited
+Abstract - it must be inhereted, it can't create new abstract class for example as var
+Virtual - allows you to overwrite it later (method) - if ti's not virtual I can override 
 
 5. What are the different access modifiers in c# (e.g. private). And what do they do
 --Private - can be accesed only inside a class
---Public - can be accesed inside as well as ousie a class
+--Public - can be accesed inside as well as ousie a class, can be accesed in other project 
 --Protected - acesible inside the class and in other classes that derive from this class
+//internal - can be accesed only in this project
 
 6. What is the difference between "const", "static" and "static readonly" keywords
 --Const - it's value is constant, we have to assing some value to it
@@ -61,9 +67,10 @@ Constructor is a method that gets called as first when class is called
 
 18. What is TDD? Explain the 3 steps in it. 
 --using/writing unit tests while coding
---AAA - Arrange, get ready + act, run the code + assert, check your result
 
 19. Explain difference between ref and out keywords in C#
+ref- allows you changed the value within the method
+out- can be return more than one outputs
 
 20. What is the output for executing the following code?
 public class TestClass
@@ -87,4 +94,22 @@ var test = new TestClass();
 test.RunTest();
 
 --There will be "Changed in TestMethod" written twice in Console
+
+
+
+--Counter
+
+    class Counter
+    {
+        private static int _count;
+        public Counter()
+        {
+            _count++;
+        }
+
+        public int GetCount()
+        {
+            return _count;
+        }
+    }
 

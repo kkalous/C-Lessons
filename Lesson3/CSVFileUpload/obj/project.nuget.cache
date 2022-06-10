@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ki7Gh4lVkfTowiu0kV36ptn15+V3/r4/44uuQYl+ZYrDm6GoZxwj1CS90C0oaRdO7GeGhSiLE9TWIJy6JDhswA==",
+  "dgSpecHash": "4plYMewY0wZEM0jvIiSJraCGvt+9t15TysdSvxRP0HbMR3XjoYRRjBuEmqNj7M/68B2KBYkxFOtoiR2pTfXjHA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Kamila\\Desktop\\C# projects\\C-Lessons\\Lesson3\\CSVFileUpload\\CSVFileUpload.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Kamila\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.18\\microsoft.netcore.app.host.win-x64.3.1.18.nupkg.sha512"
+  ],
   "logs": []
 }
