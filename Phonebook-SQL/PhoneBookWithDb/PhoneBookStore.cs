@@ -90,16 +90,7 @@ namespace PhoneBook
                     //open connection
                     conn.Open();
                     //execute the SQLCommand
-                    SqlDataReader dr = cmd.ExecuteReader();
-
-                    //check if there are records
-                    //if (dr.HasRows)
-                    //{
-                    //    for (int lp = 0; lp < dr.FieldCount; lp++)
-                    //    {
-                    //        contactsList.Add(dr.GetString(lp), dr.GetValue(lp).ToString());
-                    //    }
-                    //}
+                    SqlDataReader dr = cmd.ExecuteReader();                
 
                     while (dr.Read())
                     {
