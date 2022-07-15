@@ -39,42 +39,6 @@ namespace CSVFileUpload
                     dictionary[strategy].Add(pnl);
                 }
             }
-
-            //List<string[]> data = new List<string[]>();
-
-            /*foreach (var line in lines)
-            {
-                var vals = line.Split(",");
-                data.Add(vals);
-            }
-
-            List<StrategyPnl> strategyPnl = new List<StrategyPnl>();
-            for (int i = 1; i < 16; i++)
-            {
-                for (var y = 1; y < data.Count; y++)
-                {
-                    var strategyList = new StrategyPnl()
-                    {
-                        //Strategy = strategyNames[i],
-                        Strategy = data.First()[i],
-                        Pnls = new List<Pnl>()
-                        {
-                            new Pnl
-                            {
-                                //Date = dates[y],
-                                Date = DateTime.Parse(data[i].First()),
-                                Amount = decimal.Parse(data[y].GetValue(i).ToString())
-                            }
-                        }
-                    };
-
-                    strategyPnl.Add(strategyList);
-                }
-            }            
-       
-        }*/
-
-
         }
     }
 
