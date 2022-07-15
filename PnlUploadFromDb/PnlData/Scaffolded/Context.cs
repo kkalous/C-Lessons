@@ -17,6 +17,7 @@ namespace PnlData.Scaffolded
         }
 
         public virtual DbSet<Pnl> Pnls { get; set; }
+        public virtual DbSet<PnlInsert> PnlInserts { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -69,6 +70,20 @@ namespace PnlData.Scaffolded
                 entity.Property(e => e.Strategy8).HasColumnType("numeric(38, 8)");
 
                 entity.Property(e => e.Strategy9).HasColumnType("numeric(38, 8)");
+            });
+
+            modelBuilder.Entity<PnlInsert>(entity =>
+            {
+                entity.HasKey(e => new {e.Date, e.Amount, e.StrategyName })
+                    .HasName("[pnl_insert_pk]");
+
+                entity.ToTable("pnl_insert");
+
+                entity.Property(e => e.Date).HasColumnType("date");
+
+                entity.Property(e => e.StrategyName).HasColumnType("varchar(50)");
+
+                entity.Property(e => e.Amount).HasColumnType("numeric(38, 8)");
             });
 
             OnModelCreatingPartial(modelBuilder);
