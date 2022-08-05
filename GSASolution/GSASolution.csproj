@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\**" />
+    <Compile Remove="Tests\**" />
+    <EmbeddedResource Remove="Data\**" />
+    <EmbeddedResource Remove="Tests\**" />
+    <None Remove="Data\**" />
+    <None Remove="Tests\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="Data\Data.csproj" />
+  </ItemGroup>
+
+</Project>
