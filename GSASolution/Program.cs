@@ -11,11 +11,12 @@ namespace GSASolution
             //DatabaseSeeder seeder = new DatabaseSeeder(@"C:\Users\Kamila\Desktop\C# projects\C-Lessons\Files", new CsvInputer());
             //seeder.SeedStrategies();
 
-            CsvOutputer _outputer = new CsvOutputer();
+            CsvOutputer _outputer = new CsvOutputer(new CumulativePnlService());
+
 
             string returnValue = InsertReturnValue();
 
-            var command = InsertCommand();
+            string command;
 
             var endApp = "N";
 
@@ -24,15 +25,20 @@ namespace GSASolution
                 switch (returnValue.ToUpper())
                 {
                     case "CA":
-                        foreach(var line in _outputer.GetCapitalsInfo(command))
+                        command = InsertCommand();
+                        foreach (var line in _outputer.GetCapitalsInfo(command))
                         {
-                            Console.WriteLine(line);
+                            var rslt = @$"{line.Strategy.StrategyName}, date:{line.Date}, capital:{line.Amount}";
+                            Console.WriteLine(rslt);
                         };                        
                         break;
                     case "PL":
-                        foreach (var line in _outputer.GetCapitalsInfo(command))
-                        {
-                            Console.WriteLine(line);
+                        command = InsertRegion();
+                        foreach (var line in _outputer.GetCumulativePnlsInfo(command))
+                        {  
+                            var rslt = @$"{line.Region}, date:{line.Date}, capital:{line.Amount}";
+
+                            Console.WriteLine(rslt);
                         };                       
                         break;
                     default:
@@ -40,13 +46,12 @@ namespace GSASolution
                         break;
                 }
 
-                Console.WriteLine("Write 'N' to continue or 'Y' to close the app");
+                Console.WriteLine("Finished? Write 'N' to continue or 'Y' to close the app");
                 endApp = Console.ReadLine();
 
                 if (endApp.ToUpper() == "N")
                 {
                     returnValue = InsertReturnValue();
-                    command = InsertCommand();
                 }
             }
 
@@ -55,6 +60,14 @@ namespace GSASolution
         private static string InsertCommand()
         {
             Console.WriteLine("Insert your command (e.g. Strategy1, Strategy2, Strategy15):");
+            var command = Console.ReadLine();
+
+            return command;
+        }
+
+        private static string InsertRegion()
+        {
+            Console.WriteLine("Insert your region (e.g. EU):");
             var command = Console.ReadLine();
 
             return command;

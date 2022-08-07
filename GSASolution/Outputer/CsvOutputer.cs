@@ -1,4 +1,6 @@
-﻿using Data.Scaffolded;
+﻿using Data;
+using Data.Scaffolded;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,84 +10,73 @@ namespace GSASolution.Outputer
 {
     public class CsvOutputer
     {
-        public IEnumerable<string> GetCapitalsInfo(string strategies)
+        private readonly ICumulativePnlService _cumulativePnlService;
+        public CsvOutputer(ICumulativePnlService cumulativePnlService)
         {
-            try
-            {
-                var strategiesList = strategies.Split(",").ToList();
-
-                using (var db = new GsaContext())
-                {
-                    var strategyInfo = GetStrategyInfo(strategiesList, db);
-
-                    //Get Capital
-                    var results = new List<string>();
-                    foreach (var strategy in strategyInfo)
-                    {
-                        var capitalsList = db.Capitals.Where(w => w.StrategyId == strategy.StrategyId).ToList();
-                        foreach (var capital in capitalsList)
-                        {
-                            var rslt = @$"{strategy.StrategyName}, date:{capital.Date}, capital:{capital.Amount}";
-                            results.Add(rslt);
-                        }
-                    }
-
-                    return results;
-
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Wrong Command!");
-                throw ex;
-            }
+            _cumulativePnlService = cumulativePnlService;
         }
 
-        public IEnumerable<string> GetPnlsInfo(string strategies)
+        public List<Capital> GetCapitalsInfo(string strategies)
         {
-            try
+            var strategiesList = strategies.Split(",").ToList();
+
+            using var db = new GsaContext();
+
+            var strategyInfo = GetStrategyInfo(strategiesList, db);
+
+            //Get Capital
+            var results = new List<Capital>();
+            foreach (var strategy in strategyInfo)
             {
-                var strategiesList = strategies.Split(",").ToList();
-
-                using (var db = new GsaContext())
+                var capitalsList = db.Capitals
+                                        .Include(i => i.Strategy)
+                                        .Where(w => w.StrategyId == strategy.StrategyId);
+                foreach (var capital in capitalsList)
                 {
-                    var strategyInfo = GetStrategyInfo(strategiesList, db);
-
-                    //Get Pnl
-                    var results = new List<string>();
-                    foreach (var strategy in strategyInfo)
-                    {
-                        var pnlsList = db.Pnls.Where(w => w.StrategyId == strategy.StrategyId).ToList();
-                        foreach (var pnl in pnlsList)
-                        {
-                            var rslt = @$"{strategy.Region}, date:{pnl.Date}, capital:{pnl.Amount}";
-                            results.Add(rslt);
-                        }
-                    }
-
-                    return results;
-
+                    results.Add(capital);
                 }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Wrong Command!");
-                throw ex;
-            }
+
+            return results;
+
         }
 
+        public List<CumulativePnl> GetCumulativePnlsInfo(string region)
+        {
+            using var db = new GsaContext();
+
+            var trimedRegion = region.Trim().TrimEnd();
+
+            var results = new List<CumulativePnl>();
+
+            //Calculate Cumulative Pnl 
+            var pnlsList = db.Pnls
+                            .Include(i => i.Strategy)
+                            .Where(w => w.Strategy.Region == trimedRegion).ToList();
+
+            var rslt = _cumulativePnlService.CalculateCumulativePnl(pnlsList);
+
+            results.AddRange(rslt);
+
+
+            return results;
+        }
         private List<Strategy> GetStrategyInfo(List<string> strategiesList, GsaContext db)
         {
-            var strategiesInfo = new List<Strategy>();
+            var results = new List<Strategy>();
+
+
             //Get strategy id, region
             foreach (var strategy in strategiesList)
             {
                 var trimedStrategy = strategy.TrimEnd().Trim();
                 var str = db.Strategies.Where(w => w.StrategyName.ToUpper() == trimedStrategy.ToUpper()).FirstOrDefault();
-                strategiesInfo.Add(str);
+                results.Add(str);
             }
 
-            return strategiesInfo;
+            return results;
+
+
         }
     }
 }
