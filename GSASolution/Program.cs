@@ -34,9 +34,11 @@ namespace GSASolution
                         break;
                     case "PL":
                         command = InsertRegion();
+                        Console.WriteLine(@$"Cumulative Pnl for region {command.ToUpper()}");
+
                         foreach (var line in _outputer.GetCumulativePnlsInfo(command))
                         {  
-                            var rslt = @$"{line.Region}, date:{line.Date}, capital:{line.Amount}";
+                            var rslt = @$"date:{line.Date}, capital:{line.Amount}";
 
                             Console.WriteLine(rslt);
                         };                       
