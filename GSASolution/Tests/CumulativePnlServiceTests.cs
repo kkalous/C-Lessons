@@ -20,7 +20,7 @@ namespace Tests
         }
 
         [Test]
-        public void CreateCumulativePnlsList()
+        public void CreateCumulativePnlsListPass()
         {
             //Arrange
             var listPnl = new List<Pnl>();
@@ -60,6 +60,50 @@ namespace Tests
             //Assert
 
             Assert.AreEqual(300, results.Select(s => s.Amount).First());
+        }
+
+
+        [Test]
+        public void CreateCumulativePnlsListFail()
+        {
+            //Arrange
+            var listPnl = new List<Pnl>();
+
+            var pnl = new Pnl()
+            {
+                StrategyId = 2,
+                Date = Convert.ToDateTime("01-01-2022"),
+                Amount = 200,
+                Strategy = new Strategy()
+                {
+                    StrategyId = 2,
+                    Region = "EU"
+                }
+            };
+
+            listPnl.Add(pnl);
+
+            var pnl1 = new Pnl()
+            {
+                StrategyId = 2,
+                Date = Convert.ToDateTime("01-01-2022"),
+                Amount = 200,
+                Strategy = new Strategy()
+                {
+                    StrategyId = 2,
+                    Region = "EU"
+                }
+            };
+
+            listPnl.Add(pnl1);
+
+            //Act
+
+            var results = _cumulativePnlService.CalculateCumulativePnl(listPnl);
+
+            //Assert
+
+            Assert.AreNotEqual(300, results.Select(s => s.Amount).First());
         }
     }
 }
