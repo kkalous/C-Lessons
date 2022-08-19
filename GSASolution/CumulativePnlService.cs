@@ -17,7 +17,9 @@ namespace GSASolution
         {
             var results = new List<CumulativePnl>();
 
-            var dates = pnlsList.Select(s => s.Date).OrderBy(o => o.Value).Distinct().ToList();
+            var dates = pnlsList
+                .OrderBy(o => o.Date)
+                .ToList();
 
 
             foreach (var date in dates)
@@ -31,6 +33,36 @@ namespace GSASolution
                     Region = pnlsList.Select(s => s.Strategy.Region).First(),
                     Date = date,
                     Amount = sumPnls
+                };
+
+                results.Add(cumulativePnl);
+            }
+
+            return results;
+        }
+
+        public List<CumulativePnl> CalculateCumulativePnl2(List<Pnl> pnlsList)
+        {
+            var results = new List<CumulativePnl>();
+
+            var pnls = pnlsList
+                .GroupBy(g => g.Date)
+                .OrderBy(o => o.Key)
+                .ToList();
+
+            var total = 0m;
+
+            foreach (var pnlGroup in pnls)
+            {
+                var pnlForDate = pnlGroup.ToList().Sum(x => x.Amount);
+
+                total += pnlForDate.Value;               
+
+                var cumulativePnl = new CumulativePnl
+                {
+                    Region = pnlsList.Select(s => s.Strategy.Region).First(),
+                    Date = pnlGroup.Key,
+                    Amount = total
                 };
 
                 results.Add(cumulativePnl);
