@@ -13,14 +13,14 @@ namespace Multhitreeading
         {
             var namesList = new List<MatchModel>();
 
-            Parallel.ForEach(names, (i, state) =>
+            Parallel.ForEach(names, (name, state) =>
             {
 
                 var listWithAllRatios = new List<MatchModel>();
 
                 for (int l = 0; l < names.Length; l++)
                 {
-                    var name1 = i;
+                    var name1 = name;
                     var name2 = names[l];
 
                     var ratio = FuzzySharp.Levenshtein.GetRatio(name1, name2);
