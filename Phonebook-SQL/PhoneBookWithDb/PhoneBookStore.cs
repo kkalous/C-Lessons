@@ -5,22 +5,23 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace PhoneBook
 {
     public interface IPhoneBookStore
     {
         Dictionary<string, string> GetContactList();
-        void WriteContact(string name, string number);
-        void DeleteContact(string name, string number);
-        void UpdateContact(string name, string number);
+        Task WriteContactAsync(string name, string number);
+        Task DeleteContactAsync(string name, string number);
+        Task UpdateContactAsync(string name, string number);
     }
 
     public class PhoneBookStore : IPhoneBookStore
     {
 
         private readonly string connStr = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
-        public void WriteContact(string name, string number)
+        public async Task WriteContactAsync(string name, string number)
         {
             using (SqlConnection conn = new SqlConnection(connStr))
             {
@@ -28,12 +29,12 @@ namespace PhoneBook
                 SqlCommand cmd = new SqlCommand(query, conn);
 
                 conn.Open();
-                cmd.ExecuteReader();             
+                await cmd.ExecuteReaderAsync().ConfigureAwait(false);
                 conn.Close();
             }
         }
 
-        public void DeleteContact(string name, string number)
+        public async Task DeleteContactAsync(string name, string number)
         {
             
             using (SqlConnection conn = new SqlConnection(connStr))
@@ -56,14 +57,14 @@ namespace PhoneBook
                 SqlCommand cmd = new SqlCommand(query, conn);
 
                 conn.Open();
-                cmd.ExecuteReader();
+                await cmd.ExecuteReaderAsync().ConfigureAwait(false);
                 conn.Close();
 
 
             }
         }
        
-        public void UpdateContact(string name, string number)
+        public async Task UpdateContactAsync(string name, string number)
         {
             using (SqlConnection conn = new SqlConnection(connStr))
             {
@@ -71,12 +72,12 @@ namespace PhoneBook
                 SqlCommand cmd = new SqlCommand(query, conn);
 
                 conn.Open();
-                cmd.ExecuteReader();
+                await cmd.ExecuteReaderAsync().ConfigureAwait(false);
                 conn.Close();
             }
         }
 
-        public Dictionary<string, string> GetContactList()
+        public  Dictionary<string, string> GetContactList()
         {
             try
             {
@@ -90,7 +91,7 @@ namespace PhoneBook
                     //open connection
                     conn.Open();
                     //execute the SQLCommand
-                    SqlDataReader dr = cmd.ExecuteReader();                
+                    SqlDataReader dr =  cmd.ExecuteReader();                
 
                     while (dr.Read())
                     {
