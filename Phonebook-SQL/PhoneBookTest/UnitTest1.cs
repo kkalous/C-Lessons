@@ -13,7 +13,7 @@ namespace PhoneBookTests
         public async void Setup()
         {
             var fakeStore = new Mock<IPhoneBookStore>();
-            fakeStore.Setup(x => x.GetContactListAsync()).Returns(new Dictionary<string, string>());
+           // fakeStore.Setup(x => x.GetContactListAsync()).Returns(new Dictionary<string, string>());
             _phoneBook = new PhoneBookService(fakeStore.Object);
         }
 

@@ -1,15 +1,17 @@
-﻿using System;
+﻿using PhoneBookWithDb;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace PhoneBook
 {
 
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            PhoneBookService phoneBook = new PhoneBookService(new PhoneBookStore());
+            PhoneBookServiceAsync phoneBook = new PhoneBookServiceAsync(new PhoneBookStoreLinq());
 
 
             Console.WriteLine("Hi! Welcome to PhoneBook!\n");
@@ -48,9 +50,9 @@ namespace PhoneBook
                     Console.WriteLine("Insert name: ");
                     var name = Console.ReadLine();
 
-                    var isContactSaved = phoneBook.AddContact(name, number);
+                    var isContactSaved = await phoneBook.AddContactAsync(name, number);
 
-                    if (!isContactSaved)
+                    if (!Convert.ToBoolean(isContactSaved))
                     {
                         Console.WriteLine($"Can't save {number}.Check if your number is in the UK mobile phone number format '07911123456'");
                     }
@@ -70,7 +72,7 @@ namespace PhoneBook
                     Console.WriteLine("Insert new number: ");
                     var newNumber = Console.ReadLine();
 
-                    var number = phoneBook.UpdateNumber(name, newNumber);
+                    var number = await phoneBook.UpdateNumberAsync(name, newNumber);
                     if (number == null)
                     {
                         Console.WriteLine($"Contact: {name} doesn't exist. ");

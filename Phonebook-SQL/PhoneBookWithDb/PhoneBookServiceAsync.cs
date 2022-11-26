@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhoneBookWithDb;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,21 +9,21 @@ namespace PhoneBook
 
     public class PhoneBookServiceAsync
     {
-        private readonly IPhoneBookStore _store;
+        private readonly IPhoneBookStoreLinq _store;
         public Dictionary<string, string> _contactsList = new Dictionary<string, string>();
 
-        public PhoneBookServiceAsync(IPhoneBookStore store)
+        public PhoneBookServiceAsync(IPhoneBookStoreLinq store)
         {
             _store = store;
             PopulateContactList();
         }
 
-        public bool AddContact(string name, string number)
+        public async Task<bool> AddContactAsync(string name, string number)
         {
             if (IsValidPhoneNumber(number) && !Exists(name))
             {
                 _contactsList.Add(name, number);
-                _store.WriteContactAsync(name, number);
+                await _store.WriteContactAsync(name, number).ConfigureAwait(false);
                 return true;
             }
 
@@ -38,25 +39,26 @@ namespace PhoneBook
 
         }
 
-        public string DeleteContact(string name)
+        public string DeleteContact(string name) //Not Async as we don't have DeleteAsync method in linq
         {
             var successful = _contactsList.TryGetValue(name, out string value);
             if (successful)
             {
                 _contactsList.Remove(name);
-                _store.DeleteContactAsync(name, null);
+                _store.DeleteContact(name, null);
             }
             return value;
         }
 
-        public void DeleteNumber(string number)
+        public void DeleteNumber(string number) //Not Async as we don't have DeleteAsync method in linq
         {
+
             foreach (var item in _contactsList)
             {
                 if (item.Value == number)
                 {
                     _contactsList.Remove(item.Key);
-                    _store.DeleteContactAsync(null, number);
+                    _store.DeleteContact(null, number);
 
                     return;
                 }
@@ -66,16 +68,16 @@ namespace PhoneBook
         }
 
 
-        public string UpdateNumber(string name, string newNumber)
+        public async Task<string> UpdateNumberAsync(string name, string newNumber)
         {
             var success = _contactsList.TryGetValue(name, out string value);
             if (success)
             {
                 _contactsList[name] = newNumber;
-                _store.UpdateContactAsync(name, newNumber);
+                await _store.UpdateContactAsync(name, newNumber);
                 return value;
             }
-            AddContact(name, newNumber);
+            await AddContactAsync(name, newNumber);
             return null;
         }
 
@@ -110,3 +112,4 @@ namespace PhoneBook
         }
     }
 }
+
