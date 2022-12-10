@@ -11,7 +11,7 @@ namespace GSASolution
             //DatabaseSeeder seeder = new DatabaseSeeder(@"C:\Users\Kamila\Desktop\C# projects\C-Lessons\Files", new CsvInputer());
             //seeder.SeedStrategies();
 
-            CsvOutputer _outputer = new CsvOutputer(new CumulativePnlService());
+            CsvOutputer _outputer = new CsvOutputer(new PnlService());
 
 
             string returnValue = InsertReturnValue();

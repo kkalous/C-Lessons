@@ -11,12 +11,12 @@ namespace Tests
 {
     public class CumulativePnlServiceTests
     {
-        private CumulativePnlService _cumulativePnlService;
+        private PnlService _cumulativePnlService;
 
         [SetUp]
         public void Setup()
         {
-            _cumulativePnlService = new CumulativePnlService();
+            _cumulativePnlService = new PnlService();
         }
 
         [Test]
@@ -55,7 +55,7 @@ namespace Tests
 
             //Act
 
-            var results = _cumulativePnlService.CalculateCumulativePnl(listPnl);
+            var results = _cumulativePnlService.CalculateCumulativePnlByRegion(listPnl);
 
             //Assert
 
@@ -99,7 +99,7 @@ namespace Tests
 
             //Act
 
-            var results = _cumulativePnlService.CalculateCumulativePnl(listPnl);
+            var results = _cumulativePnlService.CalculateCumulativePnlByRegion(listPnl);
 
             //Assert
 

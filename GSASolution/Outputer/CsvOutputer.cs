@@ -10,8 +10,8 @@ namespace GSASolution.Outputer
 {
     public class CsvOutputer
     {
-        private readonly ICumulativePnlService _cumulativePnlService;
-        public CsvOutputer(ICumulativePnlService cumulativePnlService)
+        private readonly IPnlService _cumulativePnlService;
+        public CsvOutputer(IPnlService cumulativePnlService)
         {
             _cumulativePnlService = cumulativePnlService;
         }
@@ -41,7 +41,40 @@ namespace GSASolution.Outputer
 
         }
 
-        public List<CumulativePnl> GetCumulativePnlsInfo(string region)
+        public List<CumulativePnl> GetCumulativePnlsInfo(string region, string strategy = null)
+        {
+            using var db = new GsaContext();
+
+            var trimedRegion = region.Trim().TrimEnd();
+
+            var results = new List<CumulativePnl>();
+
+            var pnlsList = new List<Pnl>();
+
+            if(strategy != null)
+            {
+                //Calculate Cumulative Pnl 
+                pnlsList = db.Pnls
+                                .Include(i => i.Strategy)
+                                .Where(w => w.Strategy.StrategyName.ToUpper() == strategy.ToUpper()).ToList();
+            }
+            else
+            {
+                //Calculate Cumulative Pnl 
+                pnlsList = db.Pnls
+                                .Include(i => i.Strategy)
+                                .Where(w => w.Strategy.Region == trimedRegion).ToList();
+            }           
+
+            var rslt = _cumulativePnlService.CalculateCumulativePnlByRegion(pnlsList);
+
+            results.AddRange(rslt);
+
+
+            return results;
+        }
+
+        public List<CumulativePnl> GetCumulativePnlsInfoWithStartingDate(string region, DateTime? startDate = null)
         {
             using var db = new GsaContext();
 
@@ -52,9 +85,11 @@ namespace GSASolution.Outputer
             //Calculate Cumulative Pnl 
             var pnlsList = db.Pnls
                             .Include(i => i.Strategy)
-                            .Where(w => w.Strategy.Region == trimedRegion).ToList();
+                            .Where(w => w.Strategy.Region == trimedRegion
+                            & (w.Date >= startDate || startDate == null))
+                            .ToList();
 
-            var rslt = _cumulativePnlService.CalculateCumulativePnl(pnlsList);
+            var rslt = _cumulativePnlService.CalculateCumulativePnlByRegion(pnlsList);
 
             results.AddRange(rslt);
 
@@ -77,6 +112,13 @@ namespace GSASolution.Outputer
             return results;
 
 
+        }
+
+        public List<CompoundPnl> CalculateCompoundPnl(string strategy)
+        {
+            var results = new List<CompoundPnl>();
+
+            return results;
         }
     }
 }
