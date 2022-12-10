@@ -1,13 +1,12 @@
-﻿using Data;
-using Data.Scaffolded;
+﻿using Data.Scaffolded;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace GSASolution.Outputer
 {
+    // Bad class name
     public class CsvOutputer
     {
         private readonly IPnlService _cumulativePnlService;
@@ -25,6 +24,7 @@ namespace GSASolution.Outputer
             var strategyInfo = GetStrategyInfo(strategiesList, db);
 
             //Get Capital
+            // TODO: Do this all using one db call to fetch data
             var results = new List<Capital>();
             foreach (var strategy in strategyInfo)
             {
@@ -51,7 +51,7 @@ namespace GSASolution.Outputer
 
             var pnlsList = new List<Pnl>();
 
-            if(strategy != null)
+            if (strategy != null)
             {
                 //Calculate Cumulative Pnl 
                 pnlsList = db.Pnls
@@ -64,7 +64,7 @@ namespace GSASolution.Outputer
                 pnlsList = db.Pnls
                                 .Include(i => i.Strategy)
                                 .Where(w => w.Strategy.Region == trimedRegion).ToList();
-            }           
+            }
 
             var rslt = _cumulativePnlService.CalculateCumulativePnlByRegion(pnlsList);
 
@@ -96,22 +96,15 @@ namespace GSASolution.Outputer
 
             return results;
         }
+
+
         private List<Strategy> GetStrategyInfo(List<string> strategiesList, GsaContext db)
         {
-            var results = new List<Strategy>();
-
-
             //Get strategy id, region
-            foreach (var strategy in strategiesList)
-            {
-                var trimedStrategy = strategy.TrimEnd().Trim();
-                var str = db.Strategies.Where(w => w.StrategyName.ToUpper() == trimedStrategy.ToUpper()).FirstOrDefault();
-                results.Add(str);
-            }
+            var trimedStrategies = strategiesList.Select(x => x.TrimEnd().Trim().ToUpper());
 
+            var results = db.Strategies.Where(w => trimedStrategies.Contains(w.StrategyName.ToUpper())).ToList();
             return results;
-
-
         }
 
         public List<CompoundPnl> CalculateCompoundPnl(string strategy)

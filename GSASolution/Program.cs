@@ -3,6 +3,7 @@ using System;
 
 namespace GSASolution
 {
+    // Move out other code into a core library that can be shared by this and the web proj
     class Program
     {
         static void Main(string[] args)

@@ -1,6 +1,11 @@
+using GSASolution;
+using GSASolution.Outputer;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddSingleton<CsvOutputer>();
+builder.Services.AddSingleton<IPnlService, PnlService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

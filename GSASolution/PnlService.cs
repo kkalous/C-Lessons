@@ -15,6 +15,7 @@ namespace GSASolution
     public class PnlService : IPnlService
     {      
 
+        // Write much more unit tests to prove/disprove David's theory the code is wrong
         public List<CumulativePnl> CalculateCumulativePnlByRegion(List<Pnl> pnlsList)
         {
             var results = new List<CumulativePnl>();
