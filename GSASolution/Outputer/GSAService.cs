@@ -6,11 +6,10 @@ using System.Linq;
 
 namespace GSASolution.Outputer
 {
-    // Bad class name
-    public class CsvOutputer
+    public class GSAService
     {
         private readonly IPnlService _cumulativePnlService;
-        public CsvOutputer(IPnlService cumulativePnlService)
+        public GSAService(IPnlService cumulativePnlService)
         {
             _cumulativePnlService = cumulativePnlService;
         }
@@ -23,19 +22,27 @@ namespace GSASolution.Outputer
 
             var strategyInfo = GetStrategyInfo(strategiesList, db);
 
+            var strategyIds = strategyInfo.Select(s => s.StrategyId).ToList();
+
             //Get Capital
             // TODO: Do this all using one db call to fetch data
+            //Old Version
+            ////foreach (var strategy in strategyInfo)
+            ////{
+            ////    var capitalsList = db.Capitals
+            ////                            .Include(i => i.Strategy)
+            ////                            .Where(w => w.StrategyId == strategy.StrategyId);
+            ////    foreach (var capital in capitalsList)
+            ////    {
+            ////        results.Add(capital);
+            ////    }
+            ////}
+            
+            //New Version
             var results = new List<Capital>();
-            foreach (var strategy in strategyInfo)
-            {
-                var capitalsList = db.Capitals
-                                        .Include(i => i.Strategy)
-                                        .Where(w => w.StrategyId == strategy.StrategyId);
-                foreach (var capital in capitalsList)
-                {
-                    results.Add(capital);
-                }
-            }
+
+            var capitalList = db.Capitals.Where(w => strategyIds.Contains((int)w.StrategyId)).ToList();
+            results.AddRange(capitalList);    
 
             return results;
 
@@ -90,6 +97,28 @@ namespace GSASolution.Outputer
                             .ToList();
 
             var rslt = _cumulativePnlService.CalculateCumulativePnlByRegion(pnlsList);
+
+            results.AddRange(rslt);
+
+
+            return results;
+        }
+
+        public List<CompoundPnl> GetCumpoundPnl(string strategy)
+        {
+            using var db = new GsaContext();
+
+            var trimedstrategy = strategy.Trim();
+
+            var results = new List<CompoundPnl>();
+
+            //Calculate Cumulative Pnl 
+            var pnlsList = db.Pnls
+                            .Include(i => i.Strategy)
+                            .Where(w => w.Strategy.StrategyName.ToUpper() == trimedstrategy.ToUpper())
+                            .ToList();
+
+            var rslt = _cumulativePnlService.CalculateCompoundPnl(pnlsList);
 
             results.AddRange(rslt);
 

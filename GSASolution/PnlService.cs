@@ -15,7 +15,7 @@ namespace GSASolution
     public class PnlService : IPnlService
     {      
 
-        // Write much more unit tests to prove/disprove David's theory the code is wrong
+        //Todo: Write much more unit tests to prove/disprove David's theory the code is wrong
         public List<CumulativePnl> CalculateCumulativePnlByRegion(List<Pnl> pnlsList)
         {
             var results = new List<CumulativePnl>();
@@ -51,43 +51,60 @@ namespace GSASolution
         {
             var results = new List<CompoundPnl>();
 
-            var cumulativePnls = CalculateCumulativePnlByRegion(pnlsList);
+            var cumulativePnls = CalculateCumulativePnlByStrategy(pnlsList);
+
+            var dates = pnlsList
+               .OrderBy(o => o.Date)
+               .GroupBy(g => g.StrategyId)
+               .ToList();
 
             foreach (var pnl in cumulativePnls)
             {
+                var firstDayOfMonth = new DateTime(pnl.Date.Value.Year, pnl.Date.Value.Month, 1);
 
+                var cumulativePnlStartMonth = cumulativePnls.Where(w => w.Date.Value == firstDayOfMonth).Select(s => s.Amount).SingleOrDefault();
+                var compoundPnl = pnl.Amount.Value / cumulativePnlStartMonth;
+
+                var newCompoundPnl = new CompoundPnl()
+                {
+                    Date = pnl.Date.Value,
+                    Strategy = pnl.Strategy,
+                    Amount = compoundPnl
+                };
+
+                results.Add(newCompoundPnl);
             }
 
             return results;
         }
 
-        //public List<CumulativePnl> CalculateCumulativePnl(List<Pnl> pnlsList)
-        //{
-        //    var results = new List<CumulativePnl>();
+        public List<CumulativePnl> CalculateCumulativePnlByStrategy(List<Pnl> pnlsList)
+        {
+            var results = new List<CumulativePnl>();
 
-        //    var dates = pnlsList
-        //        .OrderBy(o => o.Date)
-        //        .ToList();
+            var dates = pnlsList
+                .OrderBy(o => o.Date)
+                .ToList();
 
 
-        //    foreach (var date in dates)
-        //    {
-        //        var rslt = pnlsList.Where(w => w.Date <= date.Date).ToList();
+            foreach (var date in dates)
+            {
+                var rslt = pnlsList.Where(w => w.Date <= date.Date).ToList();
 
-        //        var sumPnls = rslt.Select(s => s.Amount).Sum();
+                var sumPnls = rslt.Select(s => s.Amount).Sum();
 
-        //        var cumulativePnl = new CumulativePnl
-        //        {
-        //            Region = pnlsList.Select(s => s.Strategy.Region).First(),
-        //            Date = date.Date,
-        //            Amount = sumPnls
-        //        };
+                var cumulativePnl = new CumulativePnl
+                {
+                    Strategy = pnlsList.Select(s => s.Strategy.StrategyName).First(),
+                    Date = date.Date,
+                    Amount = sumPnls
+                };
 
-        //        results.Add(cumulativePnl);
-        //    }
+                results.Add(cumulativePnl);
+            }
 
-        //    return results;
-        //}
+            return results;
+        }
 
     }
 

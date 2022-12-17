@@ -4,7 +4,7 @@ using GSASolution.Outputer;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddSingleton<CsvOutputer>();
+builder.Services.AddSingleton<GSAService>();
 builder.Services.AddSingleton<IPnlService, PnlService>();
 
 builder.Services.AddControllers();

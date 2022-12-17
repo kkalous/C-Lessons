@@ -8,11 +8,11 @@ namespace GSACapitalApi.Controllers
     [Route("api")]
     public class GSAController : ControllerBase
     {
-        private readonly CsvOutputer _csvOutputer;
+        private readonly GSAService _gsaService;
 
-        public GSAController(CsvOutputer csvOutputer)
+        public GSAController(GSAService csvOutputer)
         {
-            _csvOutputer = csvOutputer;
+            _gsaService = csvOutputer;
         }
 
         [HttpGet]
@@ -28,7 +28,7 @@ namespace GSACapitalApi.Controllers
         {
             var result = new List<string>();
 
-            foreach (var line in _csvOutputer.GetCapitalsInfo(strategies))
+            foreach (var line in _gsaService.GetCapitalsInfo(strategies))
             {
                 var rslt = @$"{line.Strategy.StrategyName}, date:{line.Date}, capital:{line.Amount}";
                 result.Add(rslt);              
@@ -45,9 +45,25 @@ namespace GSACapitalApi.Controllers
         {
             var result = new List<string>();
 
-            foreach (var line in _csvOutputer.GetCumulativePnlsInfoWithStartingDate(region, startDate))
+            foreach (var line in _gsaService.GetCumulativePnlsInfoWithStartingDate(region, startDate))
             {
                 var rslt = @$"region: {region.ToUpper()}, date:{line.Date}, cumulativePnl:{line.Amount}";
+
+                result.Add(rslt);
+            };
+
+            return result;
+        }
+
+        [HttpGet]
+        [Route("/compound-daily-returns")]
+        public List<string> GetCumulativePnl(string strategy)
+        {
+            var result = new List<string>();
+
+            foreach (var line in _gsaService.GetCumpoundPnl(strategy))
+            {
+                var rslt = @$"strategy: {strategy}, date:{line.Date}, compoundReturn:{line.Amount}";
 
                 result.Add(rslt);
             };
